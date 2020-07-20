@@ -1,4 +1,4 @@
-package com.bottomnavigationview.fragments;
+package com.radvin_app.radvintodolist.ui;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bottomnavigationview.R;
+import com.radvin_app.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SmsFragment#newInstance} factory method to
+ * Use the {@link DonsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SmsFragment extends Fragment {
+public class DonsFragment extends Fragment {
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
@@ -23,7 +23,7 @@ public class SmsFragment extends Fragment {
   private String mParam1;
   private String mParam2;
 
-  public SmsFragment() {
+  public DonsFragment() {
     // Required empty public constructor
   }
 
@@ -33,11 +33,11 @@ public class SmsFragment extends Fragment {
    *
    * @param param1 Parameter 1.
    * @param param2 Parameter 2.
-   * @return A new instance of fragment SmsFragment.
+   * @return A new instance of fragment NotificationFragment.
    */
   // TODO: Rename and change types and number of parameters
-  public static SmsFragment newInstance(String param1, String param2) {
-    SmsFragment fragment = new SmsFragment();
+  public static DonsFragment newInstance(String param1, String param2) {
+    DonsFragment fragment = new DonsFragment();
     Bundle args = new Bundle();
     args.putString(ARG_PARAM1, param1);
     args.putString(ARG_PARAM2, param2);
@@ -58,6 +58,6 @@ public class SmsFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_sms, container, false);
+    return inflater.inflate(R.layout.fragment_dons, container, false);
   }
 }

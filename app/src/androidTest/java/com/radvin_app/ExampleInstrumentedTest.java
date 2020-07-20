@@ -1,4 +1,4 @@
-package com.bottomnavigationview;
+package com.radvin_app;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

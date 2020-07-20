@@ -1,4 +1,4 @@
-package com.bottomnavigationview;
+package com.radvin_app.radvintodolist;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import com.bottomnavigationview.fragments.HomeFragment;
-import com.bottomnavigationview.fragments.NotificationFragment;
-import com.bottomnavigationview.fragments.SmsFragment;
+
+import com.radvin_app.R;
+import com.radvin_app.radvintodolist.ui.task.TasksFragment;
+import com.radvin_app.radvintodolist.ui.DonsFragment;
+import com.radvin_app.radvintodolist.ui.category.CategoriesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     bottomNavigation = findViewById(R.id.bottom_navigation);
     bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-    openFragment(HomeFragment.newInstance("", ""));
+    openFragment(TasksFragment.newInstance("", ""));
   }
 
   public void openFragment(Fragment fragment) {
@@ -36,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
         @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
           switch (item.getItemId()) {
             case R.id.navigation_home:
-              openFragment(HomeFragment.newInstance("", ""));
+              openFragment(TasksFragment.newInstance("", ""));
               return true;
             case R.id.navigation_sms:
-              openFragment(SmsFragment.newInstance("", ""));
+              openFragment(CategoriesFragment.newInstance("", ""));
               return true;
             case R.id.navigation_notifications:
-              openFragment(NotificationFragment.newInstance("", ""));
+              openFragment(DonsFragment.newInstance("", ""));
               return true;
           }
           return false;

@@ -1,4 +1,4 @@
-package com.bottomnavigationview;
+package com.radvin_app;
 
 import org.junit.Test;
 

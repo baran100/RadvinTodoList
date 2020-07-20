@@ -6,4 +6,8 @@
     <string name="menu_navigation_tasks">Tasks</string>
   <string name="menu_navigation_categories">Categories</string>
   <string name="menu_navigation_dons">Dons</string>
+
+  <string name="delete_all_title">Delete entry</string>
+  <string name="delete_all_mesage">Are you sure you want to delete this entry?</string>
+
 </resources>

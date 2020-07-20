@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SmsFragment"
+    tools:context=".radvintodolist.ui.DonsFragment"
     >
 
 
@@ -12,7 +12,6 @@
       android:layout_width="200dp"
       android:layout_height="200dp"
       android:layout_gravity="center"
-      android:src="@drawable/ic_sms"
+      android:src="@drawable/ic_notifications"
       />
-
 </FrameLayout>
