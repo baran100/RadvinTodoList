@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">لیست وظایف رادوین</string>
+    <string name="menu_navigation_tasks">وظایف</string>
+    <string name="menu_navigation_categories">دسته ها</string>
+    <string name="menu_navigation_dons">انجام شده</string>
+</resources>

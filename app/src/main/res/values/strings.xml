@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">Radvin todo list</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_navigation_tasks">Tasks</string>
+  <string name="menu_navigation_categories">Categories</string>
+  <string name="menu_navigation_dons">Dons</string>
+</resources>
