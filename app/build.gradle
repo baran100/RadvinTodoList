@@ -6,7 +6,7 @@ android {
 
   defaultConfig {
     applicationId "com.radvin_app.radvintodolist"
-    minSdkVersion 21
+    minSdkVersion 23
     targetSdkVersion 29
     versionCode 1
     versionName "1.0"
@@ -30,4 +30,12 @@ dependencies {
   testImplementation 'junit:junit:4.13'
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+  //sql sccout
+  debugImplementation 'com.idescout.sql:sqlscout-server:4.1'
+  releaseImplementation 'com.idescout.sql:sqlscout-server-noop:4.1'
+
+  //persian
+  implementation 'com.github.roojin:persian-calendar-view:1.2.2'
+  implementation 'com.github.ali-sardari:PersianRangeDatePicker:1.3.0'
 }

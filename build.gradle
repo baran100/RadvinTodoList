@@ -18,7 +18,14 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven {
+            url 'http://www.idescout.com/maven/repo/'
+        }
+        maven {
+            url "https://s3.amazonaws.com/repo.commonsware.com"
+        }
+        maven { url "https://jitpack.io"
+        }
     }
 }
 

@@ -7,4 +7,11 @@
 
     <string name="delete_all_title">حذف همه</string>
     <string name="delete_all_mesage">"آیا مطمئن هستید که می خواهید همه را حذف کنید؟ "</string>
+    <string name="category_task_title">دسته بندی وظایف</string>
+    <string name="dialog_title_add_task">افزودن وظیفه</string>
+    <string name="dialog_title_edit_task">ویرایش وظیفه</string>
+    <string name="dialog_title_add_category">افزودن دسته</string>
+    <string name="dialog_title_edit_category">ویرایش دسته</string>
+
+    <string name="name">نام</string>
 </resources>

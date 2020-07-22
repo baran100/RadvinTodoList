@@ -9,5 +9,11 @@
 
   <string name="delete_all_title">Delete entry</string>
   <string name="delete_all_mesage">Are you sure you want to delete this entry?</string>
+  <string name="category_task_title">Task category</string>
+  <string name="dialog_title_add_task">Add task</string>
+  <string name="dialog_title_edit_task">Edit task</string>
+  <string name="dialog_title_add_category">Add category</string>
+  <string name="dialog_title_edit_category">Edit category</string>
+  <string name="name">Name</string>
 
 </resources>

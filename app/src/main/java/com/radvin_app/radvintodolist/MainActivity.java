@@ -7,20 +7,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.idescout.sql.SqlScoutServer;
 import com.radvin_app.R;
+import com.radvin_app.radvintodolist.storage.Task;
+import com.radvin_app.radvintodolist.storage.TodoDatabase;
 import com.radvin_app.radvintodolist.ui.task.TasksFragment;
 import com.radvin_app.radvintodolist.ui.DonsFragment;
 import com.radvin_app.radvintodolist.ui.category.CategoriesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
   BottomNavigationView bottomNavigation;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    SqlScoutServer.create(this, getPackageName());
+
+
     bottomNavigation = findViewById(R.id.bottom_navigation);
     bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     openFragment(TasksFragment.newInstance("", ""));
