@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.radvin_app.R;
@@ -100,6 +103,30 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
 
           }
       });
+
+    EditText searchEt = view.findViewById(R.id.et_main_search);
+    searchEt.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+      }
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() > 0) {
+          List<Task> tasks = database.searchTask(s.toString());
+          adapter.setTasks(tasks);
+        } else {
+          List<Task> tasks = database.getTasks();
+          adapter.setTasks(tasks);
+        }
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+
+      }
+    });
 
     return view;
   }

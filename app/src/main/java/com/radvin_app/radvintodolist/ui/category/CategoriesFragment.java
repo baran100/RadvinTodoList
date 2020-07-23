@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,14 +80,12 @@ public class CategoriesFragment extends Fragment implements AddEditCategoryDialo
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_tasks, container, false);
 
-
-
     recyclerView = view.findViewById(R.id.rv_main_tasks);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
     adapter = new CategoriesAdapter(CategoriesFragment.this);
     recyclerView.setAdapter(adapter);
     database = new TodoDatabase(getContext());
-    List<Category> categoryList = database.getCategory();
+    List<Category> categoryList = database.getCategories();
     adapter.addCategories(categoryList);
 
     TextView tvTitle = view.findViewById(R.id.app_bar_title);
@@ -99,6 +100,30 @@ public class CategoriesFragment extends Fragment implements AddEditCategoryDialo
         dialog.setArguments(bundle);
         dialog.setTargetFragment(CategoriesFragment.this, 0);
         dialog.show(getFragmentManager(),null);
+
+      }
+    });
+
+    EditText searchEt = view.findViewById(R.id.et_main_search);
+    searchEt.addTextChangedListener(new TextWatcher() {
+      @Override
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+      }
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() > 0) {
+          List<Category> tasks = database.searchCategories(s.toString());
+          adapter.setCategories(tasks);
+        } else {
+          List<Category> tasks = database.getCategories();
+          adapter.setCategories(tasks);
+        }
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
 
       }
     });
