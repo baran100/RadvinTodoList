@@ -1,8 +1,11 @@
 package com.radvin_app.radvintodolist.ui.task;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +14,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -25,6 +30,7 @@ import com.radvin_app.radvintodolist.storage.TodoDatabase;
 import com.radvin_app.radvintodolist.ui.category.CategoriesFragment;
 import com.radvin_app.radvintodolist.ui.dialog.AddEditCategoryDialog;
 import com.radvin_app.radvintodolist.ui.dialog.AddEditTaskDialog;
+import com.radvin_app.radvintodolist.ui.dialog.DialogFilter;
 
 import java.util.List;
 
@@ -33,11 +39,16 @@ import java.util.List;
  * Use the {@link TasksFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEventListener, AddEditTaskDialog.AddNewTaskCallback {
+public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEventListener, AddEditTaskDialog.AddNewTaskCallback
+    ,DialogFilter.OnAddFriendListener{
 
   private RecyclerView recyclerView;
   private TasksAdapter adapter;
   private TodoDatabase database;
+
+  String fromDate,toDate = "";
+
+
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
   private static final String ARG_PARAM1 = "param1";
@@ -79,6 +90,13 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
   }
 
   @Override
+  public void onAddFriendSubmit(String fromDate , String toDate) {
+    List<Task> taskList = database.getTasksByDate(fromDate,toDate);
+    adapter.setTasks(taskList);
+    Toast.makeText(getContext(), toDate+" "+fromDate, Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_tasks, container, false);
 
@@ -89,6 +107,7 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
       database = new TodoDatabase(getContext());
       List<Task> taskList = database.getTasks();
       adapter.addItems(taskList);
+
 
       View addNewTaskFab = view.findViewById(R.id.fab_main_addNewTask);
       addNewTaskFab.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +144,35 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
       @Override
       public void afterTextChanged(Editable s) {
 
+      }
+    });
+
+    View clearTskBtn = view.findViewById(R.id.iv_main_clearTask);
+    clearTskBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        new AlertDialog.Builder(v.getContext())
+                .setTitle(R.string.delete_all_title)
+                .setMessage(R.string.delete_all_mesage)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                  public void onClick(DialogInterface dialog, int which) {
+                    database.clearAllTask();
+                    adapter.clearItems();
+                  }
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+      }
+    });
+
+    View filterTaskBtn = view.findViewById(R.id.iv_main_filterTask);
+    filterTaskBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        DialogFilter dialogFilter = new DialogFilter();
+        dialogFilter.setTargetFragment(TasksFragment.this,10);
+        dialogFilter.show(getFragmentManager(),null);
       }
     });
 
@@ -188,4 +236,6 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
       adapter.updateItem(task);
     }
   }
+
+
 }

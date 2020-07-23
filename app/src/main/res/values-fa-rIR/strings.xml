@@ -15,4 +15,11 @@
 
     <string name="name">نام</string>
     <string name="select_category">انتخاب دسته</string>
+    <string name="from_date">از تاریخ</string>
+    <string name="to_date">تا تاریخ</string>
+    <string name="note">یادداشت</string>
+    <string name="title">عنوان</string>
+    <string name="filter">فیلتر</string>
+    <string name="okay">بسیار خوب</string>
+    <string name="canel">لغو</string>
 </resources>
