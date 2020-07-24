@@ -22,4 +22,7 @@
     <string name="filter">فیلتر</string>
     <string name="okay">بسیار خوب</string>
     <string name="canel">لغو</string>
+    <string name="priority_important">مهم</string>
+    <string name="priority_very_important">بسیار مهم</string>
+    <string name="priority_ordinary">معمولی</string>
 </resources>

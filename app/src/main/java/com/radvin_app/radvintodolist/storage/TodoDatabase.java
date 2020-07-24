@@ -23,6 +23,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
     public static final String TASKS_CONTACTS_COLUMN_ID_F = "id_category";
     public static final String TASKS_CONTACTS_COLUMN_PERSIAN_DATE = "persian_date";
     public static final String TASKS_CONTACTS_COLUMN_NOTE = "note";
+    public static final String TASKS_CONTACTS_COLUMN_PRIORITY = "priority";
 
     //CATEGORY
     private static final String TABLE_CATEGORIES = "tbl_categories";
@@ -44,7 +45,8 @@ public class TodoDatabase extends SQLiteOpenHelper {
                     + TASKS_CONTACTS_COLUMN_COMPLETED + " BOOLEAN,"
                     + TASKS_CONTACTS_COLUMN_ID_F + " INTEGER REFERENCES " + TABLE_CATEGORIES +" ( " + CATEGORIES_CONTACTS_COLUMN_ID +" ) ON DELETE CASCADE,"
                     + TASKS_CONTACTS_COLUMN_PERSIAN_DATE + " DATE,"
-                    + TASKS_CONTACTS_COLUMN_NOTE + " TEXT( 150 )"
+                    + TASKS_CONTACTS_COLUMN_NOTE + " TEXT( 150 ),"
+                    + TASKS_CONTACTS_COLUMN_PRIORITY + " BOOLEAN"
                     + ");");
 
             db.execSQL("CREATE TABLE " + TABLE_CATEGORIES + "("
@@ -84,6 +86,8 @@ public class TodoDatabase extends SQLiteOpenHelper {
         contentValues.put(TASKS_CONTACTS_COLUMN_PERSIAN_DATE,task.getPersianDate());
         contentValues.put(TASKS_CONTACTS_COLUMN_ID_F,task.getIdCategory());
         contentValues.put(TASKS_CONTACTS_COLUMN_NOTE,task.getNote());
+        contentValues.put(TASKS_CONTACTS_COLUMN_PRIORITY,task.isPriority());
+
         long result = sqLiteDatabase.insert(TABLE_TASKS,null,contentValues);
         sqLiteDatabase.close();
         return result;
@@ -133,13 +137,33 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
+                task.setCompleted(cursor.getInt(6)==1);
                 tasks.add(task);
             }while (cursor.moveToNext());
         }
         sqLiteDatabase.close();
         return tasks;
     }
-
+    public List<Task> getTasksById(long getID){
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " +  TABLE_TASKS + " WHERE " + TASKS_CONTACTS_COLUMN_ID_F + " = '"+ getID +"'" +"  ORDER BY " +" julianday( " + CATEGORIES_CONTACTS_COLUMN_ID +" ) " +"  ASC ", null);
+        List<Task> tasks = new ArrayList<>();
+        if (cursor.moveToFirst()){
+            do {
+                Task task = new Task();
+                task.setId(cursor.getLong(0));
+                task.setTitle(cursor.getString(1));
+                task.setCompleted(cursor.getInt(2)==1);
+                task.setIdCategory(cursor.getInt(3));
+                task.setPersianDate(cursor.getString(4));
+                task.setNote(cursor.getString(5));
+                task.setCompleted(cursor.getInt(6)==1);
+                tasks.add(task);
+            }while (cursor.moveToNext());
+        }
+        sqLiteDatabase.close();
+        return tasks;
+    }
     public int updateTask(Task task){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -198,6 +222,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
+                task.setCompleted(cursor.getInt(6)==1);
                 tasks.add(task);
             }while (cursor.moveToNext());
         }
@@ -235,6 +260,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
+                task.setCompleted(cursor.getInt(6)==1);
                 tasks.add(task);
             }while (cursor.moveToNext());
         }

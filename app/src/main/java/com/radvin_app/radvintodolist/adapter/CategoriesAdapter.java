@@ -92,10 +92,18 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                     eventListener.onItemClickPress(category);
                 }
             });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    eventListener.onItemLongClickPress(category);
+                    return false;
+                }
+            });
         }
     }
 
     public interface CategoryItemEventListener{
+        void onItemLongClickPress(Category category);
         void onItemClickPress(Category category);
     }
 }

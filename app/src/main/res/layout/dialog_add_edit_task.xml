@@ -61,16 +61,70 @@
         android:padding="10dp"
         android:drawableStart="@drawable/ic_basket"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/et_dialog_date"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:gravity="center_vertical"
-        android:hint="@string/select_category"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/et_dialog_date"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_category_select"
+            android:drawableStart="@drawable/ic_calendar"
+            android:gravity="center_vertical"
+            android:hint="@string/select_category"
+            android:padding="10dp"
+            android:layout_marginEnd="8dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/et_dialog_time"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_category_select"
+            android:drawableStart="@drawable/ic_time"
+            android:gravity="center_vertical"
+            android:hint="@string/select_category"
+            android:padding="10dp"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_category_select"
         android:padding="10dp"
-        android:drawableStart="@drawable/ic_calendar"/>
+        android:id="@+id/radioGroup_priority">
+
+        <RadioButton
+            android:id="@+id/priority_important"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/priority_important" />
+
+        <RadioButton
+            android:id="@+id/priority_very_important"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/priority_very_important" />
+
+        <RadioButton
+            android:id="@+id/priority_ordinary"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/priority_ordinary"
+            android:layout_marginStart="35dp"/>
+    </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

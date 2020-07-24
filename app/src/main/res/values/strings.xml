@@ -22,5 +22,8 @@
     <string name="filter">Filter</string>
     <string name="okay">Okay</string>
     <string name="canel">Cancel</string>
+    <string name="priority_important">Important</string>
+    <string name="priority_very_important">Very important</string>
+    <string name="priority_ordinary">Ordinary</string>
 
 </resources>

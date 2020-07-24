@@ -1,5 +1,6 @@
 package com.radvin_app.radvintodolist.ui.category;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.radvin_app.R;
+import com.radvin_app.radvintodolist.CategoryActivity;
 import com.radvin_app.radvintodolist.adapter.CategoriesAdapter;
 import com.radvin_app.radvintodolist.storage.Category;
 import com.radvin_app.radvintodolist.storage.TodoDatabase;
@@ -163,12 +165,20 @@ public class CategoriesFragment extends Fragment implements AddEditCategoryDialo
 
 
   @Override
-  public void onItemClickPress(Category category) {
+  public void onItemLongClickPress(Category category) {
       AddEditCategoryDialog dialog = new AddEditCategoryDialog();
       Bundle bundle = new Bundle();
       bundle.putParcelable("CATEGORY",category);
       dialog.setArguments(bundle);
       dialog.setTargetFragment(CategoriesFragment.this, 1);
       dialog.show(getFragmentManager(),null);
+  }
+
+  @Override
+  public void onItemClickPress(Category category) {
+    long idCategory = category.getId();
+    Intent intent = new Intent(getContext(), CategoryActivity.class);
+    intent.putExtra("idCategory",idCategory);
+    startActivity(intent);
   }
 }

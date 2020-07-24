@@ -27,7 +27,10 @@ import com.sardari.daterangepicker.dialog.DatePickerDialog;
 import com.sardari.daterangepicker.utils.PersianCalendar;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
@@ -36,7 +39,7 @@ public class AddEditTaskDialog extends DialogFragment {
     private AddNewTaskCallback callBack;
     private Task task;
     private TextInputEditText etName, etNote;
-    private MaterialTextView tvCategory, tvDate;
+    private MaterialTextView tvCategory, tvDate, tvTime;
     private TodoDatabase database;
     private TextInputLayout inputName;
     private TextView tvHeader,imgDelete;
@@ -88,6 +91,7 @@ public class AddEditTaskDialog extends DialogFragment {
         etName = view.findViewById(R.id.et_dialog_name);
         etNote = view.findViewById(R.id.et_dialog_note);
         tvDate = view.findViewById(R.id.et_dialog_date);
+        tvTime = view.findViewById(R.id.et_dialog_time);
         tvCategory = view.findViewById(R.id.et_dialog_category);
         tvHeader = view.findViewById(R.id.dialog_header_title);
         imgDelete = view.findViewById(R.id.dialog_image_delete);
@@ -107,7 +111,12 @@ public class AddEditTaskDialog extends DialogFragment {
                 openDatePickerDialog();
             }
         });
-
+        tvTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePickerDialog();
+            }
+        });
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,8 +127,8 @@ public class AddEditTaskDialog extends DialogFragment {
         });
 
         if (getArguments() != null && getArguments().containsKey("NEW")) {
-            tvCategory.setText(getFirstAccount().getName());
-            categoryId = getFirstAccount().getId();
+            tvCategory.setText(getFirstCategory().getName());
+            categoryId = getFirstCategory().getId();
             tvHeader.setText(R.string.dialog_title_add_task);
             imgDelete.setVisibility(View.INVISIBLE);
             String date = persianCalendar.getPersianYear()+"-"+persianCalendar.getPersianMonth()+"-"+persianCalendar.getPersianDay();
@@ -199,7 +208,7 @@ public class AddEditTaskDialog extends DialogFragment {
 
 
 
-    private Category getFirstAccount() {
+    private Category getFirstCategory() {
         List<Category> accountList = database.getCategories();
         if (accountList.size() == 0) {
             return null;
