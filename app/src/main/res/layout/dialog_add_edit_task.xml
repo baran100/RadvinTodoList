@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            android:fontFamily="@font/primary_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:id="@+id/dialog_header_title"/>
+
+        <TextView
+            android:id="@+id/dialog_image_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:drawableEnd="@drawable/ic_delete"
+            android:drawableTint="@color/colorAccent"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/title"
+        android:id="@+id/til_dialog_name"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_dialog_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_cards"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/et_dialog_category"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:hint="@string/select_category"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_category_select"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_basket"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/et_dialog_date"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:hint="@string/select_category"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_category_select"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_calendar"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/note"
+        android:id="@+id/til_dialog_note"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_dialog_note"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:drawableStart="@drawable/ic_note"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_dialog_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:text="ذخیره"
+        />
+</LinearLayout>

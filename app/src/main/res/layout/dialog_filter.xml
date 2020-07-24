@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="25dp"
+        android:layout_marginTop="50dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="@dimen/dim_20dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:hint="@string/from_date"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_category_select"
+            android:padding="10dp"
+            android:layout_marginEnd="10dp"
+            android:id="@+id/from_date">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="@dimen/dim_20dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:hint="@string/to_date"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_category_select"
+            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:id="@+id/to_date">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/et_dialog_filter_category"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:hint="@string/select_category"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_category_select"
+        android:padding="10dp"
+        android:layout_margin="25dp"
+        />
+
+</LinearLayout>
