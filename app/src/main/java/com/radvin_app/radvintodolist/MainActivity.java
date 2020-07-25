@@ -9,14 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.idescout.sql.SqlScoutServer;
 import com.radvin_app.R;
-import com.radvin_app.radvintodolist.storage.Task;
-import com.radvin_app.radvintodolist.storage.TodoDatabase;
 import com.radvin_app.radvintodolist.ui.task.TasksFragment;
 import com.radvin_app.radvintodolist.ui.DonsFragment;
 import com.radvin_app.radvintodolist.ui.category.CategoriesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
       new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
           switch (item.getItemId()) {
-            case R.id.navigation_home:
+            //case R.id.navigation_dashboard:
+              //openFragment(DashboardFragment.newInstance("", ""));
+              //return true;
+            case R.id.navigation_list_task:
               openFragment(TasksFragment.newInstance("", ""));
               return true;
             case R.id.navigation_sms:

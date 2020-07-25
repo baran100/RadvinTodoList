@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item
-      android:id="@+id/navigation_home"
-      android:icon="@drawable/ic_home"
+      android:id="@+id/navigation_dashboard"
+      android:icon="@drawable/ic_grid"
+      android:title="@string/dashboard" />
+
+  <item
+      android:id="@+id/navigation_list_task"
+      android:icon="@drawable/ic_note_menu"
       android:title="@string/menu_navigation_tasks" />
 
   <item

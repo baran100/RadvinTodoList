@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -33,6 +36,7 @@ import com.radvin_app.radvintodolist.ui.dialog.AddEditTaskDialog;
 import com.radvin_app.radvintodolist.ui.dialog.DialogFilter;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,6 +103,14 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_tasks, container, false);
+
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    if (((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar() == null) {
+      toolbar.setTitle(R.string.app_name);
+      ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
+    }
+
+    setHasOptionsMenu(true);
 
       recyclerView = view.findViewById(R.id.rv_main_tasks);
       recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
@@ -178,6 +190,20 @@ public class TasksFragment extends Fragment implements TasksAdapter.TaskItemEven
 
     return view;
   }
+
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    super.onCreateOptionsMenu(menu, inflater);
+    inflater.inflate(R.menu.toolbar_menu,menu);
+  }
+
+  @Override
+  public boolean onContextItemSelected(@NonNull MenuItem item) {
+    return super.onContextItemSelected(item);
+
+  }
+
+
 
   @Override
   public void onDeleteButtonClick(Task task) {

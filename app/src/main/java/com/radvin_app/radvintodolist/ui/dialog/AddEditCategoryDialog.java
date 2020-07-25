@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class AddEditCategoryDialog extends DialogFragment {
     private TextInputEditText etName;
     private TextInputLayout inputName;
     private TextView tvHeader,imgDelete;
-
+    private Button saveBtn;
     @Override
     public void onAttachFragment(@NonNull Fragment childFragment) {
         super.onAttachFragment(childFragment);
@@ -57,6 +58,9 @@ public class AddEditCategoryDialog extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_add_edit_category, null, false);
+        if (getArguments() != null) {
+            category = getArguments().getParcelable("CATEGORY");
+        }
 
         etName = view.findViewById(R.id.et_dialog_name);
         tvHeader = view.findViewById(R.id.dialog_header_title);
@@ -71,53 +75,60 @@ public class AddEditCategoryDialog extends DialogFragment {
                 dismiss();
             }
         });
-
-        assert getArguments() != null;
         if (getArguments().containsKey("NEW")){
             imgDelete.setVisibility(View.INVISIBLE);
             tvHeader.setText(R.string.dialog_title_add_category);
-            View saveBtn = view.findViewById(R.id.btn_dialog_save);
-            saveBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (etName.length() > 0) {
-                        Category category = new Category();
-                        category.setName(etName.getText().toString());
-                        callBack.onNewCategory(category);
-                        dismiss();
-                    } else {
-                        inputName.setError("عنوان نباید خالی باشد");
-                    }
-                }
-            });
-        }else
-        if (getArguments() !=null && getArguments().containsKey("CATEGORY")){
+        }
+
+        if ( getArguments().containsKey("CATEGORY")){
             category = getArguments().getParcelable("CATEGORY");
             etName.setText(category.getName());
-            if (getArguments().containsKey("CATEGORY")){
-                tvHeader.setText(R.string.dialog_title_edit_category);
-                View saveBtn = view.findViewById(R.id.btn_dialog_save);
-                saveBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (etName.length() > 0) {
-                            category.setName(etName.getText().toString());
-                            callBack.onEditCategory(category);
-                            dismiss();
-                        } else {
-                            inputName.setError("عنوا ن نباید خالی باشد");
-                        }
-                    }
-                });
-            }
-        }else {
-
+            tvHeader.setText(R.string.dialog_title_edit_category );
+            tvHeader.append(" "+category.getName());
         }
+        saveBtn = view.findViewById(R.id.btn_dialog_save);
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!validateName()){
+                    return;
+                }
+                saveEditCategory();
+            }
+        });
 
         builder.setView(view);
         return builder.create();
     }
 
+    private void saveEditCategory(){
+        if (getArguments().containsKey("NEW")){
+            Category category = new Category();
+            category.setName(etName.getText().toString());
+            callBack.onNewCategory(category);
+            Toast.makeText(getContext(), R.string.save, Toast.LENGTH_SHORT).show();
+            dismiss();
+        }
+
+        if ( getArguments().containsKey("CATEGORY")){
+            category.setName(etName.getText().toString());
+            callBack.onEditCategory(category);
+            Toast.makeText(getContext(), R.string.updated, Toast.LENGTH_SHORT).show();
+
+            dismiss();
+        }
+    }
+
+    private boolean validateName(){
+        if (etName.getText().toString().trim().isEmpty()){
+            inputName.setError(getString(R.string.cant_be_empty));
+            etName.requestFocus();
+            return false;
+        }else {
+            inputName.setErrorEnabled(false);
+        }
+        return true;
+    }
 
     public interface AddEditNewCategoryCallBack {
         void onNewCategory(Category category);

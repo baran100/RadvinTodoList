@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".radvintodolist.CategoryActivity"></activity>
-        <activity android:name=".radvintodolist.SelectCategoryActivity" />
+        <activity android:name=".radvintodolist.ui.category.CategoryActivity" />
+        <activity android:name=".radvintodolist.ui.category.SelectCategoryActivity" />
         <activity android:name=".radvintodolist.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

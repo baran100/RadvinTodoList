@@ -46,7 +46,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                     + TASKS_CONTACTS_COLUMN_ID_F + " INTEGER REFERENCES " + TABLE_CATEGORIES +" ( " + CATEGORIES_CONTACTS_COLUMN_ID +" ) ON DELETE CASCADE,"
                     + TASKS_CONTACTS_COLUMN_PERSIAN_DATE + " DATE,"
                     + TASKS_CONTACTS_COLUMN_NOTE + " TEXT( 150 ),"
-                    + TASKS_CONTACTS_COLUMN_PRIORITY + " BOOLEAN"
+                    + TASKS_CONTACTS_COLUMN_PRIORITY + " INTEGER"
                     + ");");
 
             db.execSQL("CREATE TABLE " + TABLE_CATEGORIES + "("
@@ -69,6 +69,8 @@ public class TodoDatabase extends SQLiteOpenHelper {
 
     }
 
+
+
     public long addCategory(Category category){
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -86,7 +88,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
         contentValues.put(TASKS_CONTACTS_COLUMN_PERSIAN_DATE,task.getPersianDate());
         contentValues.put(TASKS_CONTACTS_COLUMN_ID_F,task.getIdCategory());
         contentValues.put(TASKS_CONTACTS_COLUMN_NOTE,task.getNote());
-        contentValues.put(TASKS_CONTACTS_COLUMN_PRIORITY,task.isPriority());
+        contentValues.put(TASKS_CONTACTS_COLUMN_PRIORITY,task.getPriority());
 
         long result = sqLiteDatabase.insert(TABLE_TASKS,null,contentValues);
         sqLiteDatabase.close();
@@ -137,7 +139,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
-                task.setCompleted(cursor.getInt(6)==1);
+                task.setPriority(cursor.getInt(6));
                 tasks.add(task);
             }while (cursor.moveToNext());
         }
@@ -157,7 +159,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
-                task.setCompleted(cursor.getInt(6)==1);
+                task.setPriority(cursor.getInt(6));
                 tasks.add(task);
             }while (cursor.moveToNext());
         }
@@ -222,7 +224,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
-                task.setCompleted(cursor.getInt(6)==1);
+                task.setPriority(cursor.getInt(6));
                 tasks.add(task);
             }while (cursor.moveToNext());
         }
@@ -260,7 +262,7 @@ public class TodoDatabase extends SQLiteOpenHelper {
                 task.setIdCategory(cursor.getInt(3));
                 task.setPersianDate(cursor.getString(4));
                 task.setNote(cursor.getString(5));
-                task.setCompleted(cursor.getInt(6)==1);
+                task.setPriority(cursor.getInt(6));
                 tasks.add(task);
             }while (cursor.moveToNext());
         }

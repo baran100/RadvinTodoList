@@ -19,18 +19,30 @@
         android:layout_height="wrap_content"
         android:text="عنوان تسک"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="0dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvCategoryNameItemTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="وظایف خانه"
+        android:fontFamily="@font/primary_bold"
         android:textColor="@color/colorPrimary"
-        android:fontFamily="@font/primary_bold"/>
+        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox_task"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="وظایف خانه" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_task_priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_circle_orange"
+        android:drawablePadding="5dp"
+        android:text="Work"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCategoryDateItemTask"
+        app:layout_constraintEnd_toEndOf="@+id/tvCategoryNameItemTask"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox_task" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvCategoryDateItemTask"

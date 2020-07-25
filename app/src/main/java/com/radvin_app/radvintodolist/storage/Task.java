@@ -13,7 +13,7 @@ public class Task implements Parcelable {
     private String persianDate;
     private long idCategory;
     private String note;
-    private boolean priority;
+    private int priority;
 
     public long getId() {
         return id;
@@ -63,11 +63,11 @@ public class Task implements Parcelable {
         this.note = note;
     }
 
-    public boolean isPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(boolean priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
@@ -87,7 +87,7 @@ public class Task implements Parcelable {
         dest.writeString(this.persianDate);
         dest.writeLong(this.idCategory);
         dest.writeString(this.note);
-        dest.writeByte(this.priority ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.priority);
     }
 
     protected Task(Parcel in) {
@@ -97,7 +97,7 @@ public class Task implements Parcelable {
         this.persianDate = in.readString();
         this.idCategory = in.readLong();
         this.note = in.readString();
-        this.priority = in.readByte() != 0;
+        this.priority = in.readInt();
     }
 
     public static final Creator<Task> CREATOR = new Creator<Task>() {

@@ -1,11 +1,15 @@
 package com.radvin_app.radvintodolist.adapter;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +24,8 @@ import java.util.List;
 public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHolder> {
     private List<Task> taskList = new ArrayList<>();
     private TaskItemEventListener eventListener;
+    String priority_text ;
+    Context context;
 
     public TasksAdapter(TaskItemEventListener eventListener) {
 
@@ -84,7 +90,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
     public class TaskViewHolder extends RecyclerView.ViewHolder {
         private CheckBox checkBox;
         private View deleteBtn;
-        private MaterialTextView tvCategoryNameItemTask, tvCategoryDateItemTask;
+        private MaterialTextView tvCategoryNameItemTask, tvCategoryDateItemTask, tvPriority;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +98,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
             //deleteBtn = itemView.findViewById(R.id.btn_task_delete);
             tvCategoryNameItemTask = itemView.findViewById(R.id.tvCategoryNameItemTask);
             tvCategoryDateItemTask = itemView.findViewById(R.id.tvCategoryDateItemTask);
+            tvPriority = itemView.findViewById(R.id.item_task_priority);
 
         }
 
@@ -104,6 +111,16 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
 
             tvCategoryNameItemTask.setText(nam);
             tvCategoryDateItemTask.setText(task.getPersianDate());
+            tvPriority.setText(getPriority(task.getPriority()));
+            if (task.getPriority() == 0) {
+                tvPriority.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_circle_orange,0);
+            }else if (task.getPriority() == 1) {
+                tvPriority.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_circle_purple,0);
+            }else if (task.getPriority() == 2) {
+                tvPriority.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_circle_blue,0);
+            }
+            //tvPriority.setBackgroundDrawable(getColor(task.getPriority()));
+            //tvPriority.setCompoundDrawablesWithIntrinsicBounds(getColor(task.getPriority()),0,0,0);
             //Toast.makeText(itemView.getContext(), String.valueOf(nam), Toast.LENGTH_SHORT).show();
             //deleteBtn.setOnClickListener(new View.OnClickListener() {
                 //@Override
@@ -128,6 +145,28 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.TaskViewHold
                 }
             });
         }
+        public String getPriority (int priority){
+            if (priority == 0){
+                priority_text =itemView.getContext().getResources().getString(R.string.priority_low);
+            }else if (priority == 1){
+                priority_text =itemView.getContext().getResources().getString(R.string.priority_normal);
+            }else if (priority == 2){
+                priority_text =itemView.getContext().getResources().getString(R.string.priority_high);
+            }
+            return priority_text;
+        }
+    }
+
+    private int getColor(int priority) {
+        // Drawable d = itemView.getContext().getResources().getDrawable(R.drawable.ic_circle_orange);
+        if (priority == 0){
+            //itemView.getContext().getResources().getDrawable( R.drawable.ic_circle_orange);
+        }else if (priority == 1){
+            //itemView.getContext().getResources().getDrawable( R.drawable.ic_circle_orange);
+        }else if (priority == 2){
+            //itemView.getContext().getResources().getDrawable( R.drawable.ic_circle_orange);
+        }
+        return priority;
     }
 
     public interface TaskItemEventListener {

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,13 +21,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.radvin_app.R;
-import com.radvin_app.radvintodolist.CategoryActivity;
 import com.radvin_app.radvintodolist.adapter.CategoriesAdapter;
 import com.radvin_app.radvintodolist.storage.Category;
 import com.radvin_app.radvintodolist.storage.TodoDatabase;
 import com.radvin_app.radvintodolist.ui.dialog.AddEditCategoryDialog;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +83,11 @@ public class CategoriesFragment extends Fragment implements AddEditCategoryDialo
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_tasks, container, false);
+
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    if (((AppCompatActivity) Objects.requireNonNull(getActivity())).getSupportActionBar() == null) {
+      toolbar.setTitle(R.string.category_task_title);
+    }
 
     recyclerView = view.findViewById(R.id.rv_main_tasks);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));

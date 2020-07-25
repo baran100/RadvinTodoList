@@ -104,25 +104,26 @@
         android:id="@+id/radioGroup_priority">
 
         <RadioButton
-            android:id="@+id/priority_important"
+            android:id="@+id/priority_high"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/priority_important" />
+            android:text="@string/priority_high"
+            />
 
         <RadioButton
-            android:id="@+id/priority_very_important"
+            android:id="@+id/priority_normal"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/priority_very_important" />
+            android:text="@string/priority_normal" />
 
         <RadioButton
-            android:id="@+id/priority_ordinary"
+            android:id="@+id/priority_low"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/priority_ordinary"
+            android:text="@string/priority_low"
             android:layout_marginStart="35dp"/>
     </RadioGroup>
 

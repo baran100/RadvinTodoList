@@ -22,8 +22,16 @@
     <string name="filter">Filter</string>
     <string name="okay">Okay</string>
     <string name="canel">Cancel</string>
-    <string name="priority_important">Important</string>
-    <string name="priority_very_important">Very important</string>
-    <string name="priority_ordinary">Ordinary</string>
+    <string name="priority_high">High</string>
+    <string name="priority_normal">Normal</string>
+    <string name="priority_low">Low</string>
+
+    <string name="dashboard">Dashboard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cant_be_empty">Can not be empty</string>
+    <string name="save">Saved</string>
+    <string name="updated">Updated</string>
+    <string name="select_time">Select Time</string>
 
 </resources>

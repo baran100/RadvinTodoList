@@ -1,4 +1,4 @@
-package com.radvin_app.radvintodolist;
+package com.radvin_app.radvintodolist.ui.category;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +37,7 @@ public class SelectCategoryActivity extends AppCompatActivity {
                 String categoryName = categoryList.get(position).getName();
                 long categoryId = categoryList.get(position).getId();
                 Intent intent = new Intent();
-                intent.putExtra("nameAccount",categoryName);
+                intent.putExtra("categoryName",categoryName);
                 intent.putExtra("categoryId",categoryId);
                 setResult(Activity.RESULT_OK,intent);
 

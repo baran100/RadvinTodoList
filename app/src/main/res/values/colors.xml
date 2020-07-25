@@ -10,4 +10,9 @@
   <color name="white">#fff</color>
   <color name="gray400">#bdbdbd</color>
   <color name="gray500">#9e9e9e</color>
+
+  <color name="orange">#F98529</color>
+  <color name="purple">#8B5BD9</color>
+  <color name="blue">#1377EB</color>
+
 </resources>

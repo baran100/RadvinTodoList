@@ -22,7 +22,11 @@
     <string name="filter">فیلتر</string>
     <string name="okay">بسیار خوب</string>
     <string name="canel">لغو</string>
-    <string name="priority_important">مهم</string>
-    <string name="priority_very_important">بسیار مهم</string>
-    <string name="priority_ordinary">معمولی</string>
+    <string name="priority_high">بالا</string>
+    <string name="priority_normal">معمولی</string>
+    <string name="priority_low">پایین</string>
+    <string name="dashboard">پیشخوان</string>
+    <string name="updated">به روز رسانی شد</string>
+    <string name="save">ذخیره شد</string>
+    <string name="cant_be_empty">نمی تواند خالی باشد</string>
 </resources>
